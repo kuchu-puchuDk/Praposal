@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Dheeraj Kumar?</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .bubu-img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 15px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d63384;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+            min-height: 50px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        #noBtn {
+            background: #a4b0be;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .hidden { display: none !important; }
+
+        .reveal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff2e63;
+            margin: 15px 0;
+            line-height: 1.3;
+        }
+
+        .quote-box {
+            background: #fff0f3;
+            border-left: 4px solid #ff4757;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff4757;
+            animation: float 4s linear infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts Background -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+
+    <!-- Question Card -->
+    <div id="questionCard" class="card">
+        <img src="https://media.tenor.com/gU81473o34aaaaAe/bubu-dudu-sseeyall.png" alt="Bubu Cute Bear" class="bubu-img">
+        <div class="title">Do you love Dheeraj Kumar? </div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="sayYes()">YES! Forever </button>
+            <button class="btn" id="noBtn" onmouseover="dodge()" onclick="dodge()">NO </button>
+        </div>
+    </div>
+
+    <!-- Celebration / Love Reveal Card -->
+    <div id="revealCard" class="card hidden">
+        <img src="https://media.tenor.com/K290M8f6E8UAAAAi/bubu-dudu-hug.gif" alt="Bubu Dudu Hug" class="bubu-img">
+        
+        <div class="reveal-title">I LOVE YOU SO MUCH SUGANIYA! </div>
+        
+        <p style="color: #4a4a4a; font-size: 15px; font-weight: 500;">
+            You are my world, my happiness, and my forever! 
+        </p>
+
+        <div class="quote-box">
+            "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine." 
+        </div>
+    </div>
+
+    <script>
+        function dodge() {
+            let btn = document.getElementById('noBtn');
+            let x = Math.floor(Math.random() * 200) - 100;
+            let y = Math.floor(Math.random() * 200) - 100;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function sayYes() {
+            document.getElementById('questionCard').classList.add('hidden');
+            document.getElementById('revealCard').classList.remove('hidden');
+            
+            // Extra Heart Confetti
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
